@@ -7,6 +7,9 @@ image, it checks whether the image contains a brain tumor. If a brain tumor is d
 the image shows the presence of a brain tumor; otherwise, it indicates that the image does not have a 
 brain tumor.
 
+![Screenshot (402)](https://github.com/OM-TRIPATHI1513/Brain_Tumor_Detection/assets/90430815/18dfe479-8e9b-4085-9582-e73986fd78d8)
+![Screenshot (403)](https://github.com/OM-TRIPATHI1513/Brain_Tumor_Detection/assets/90430815/e6d55809-0134-438a-9de5-9613f0d26da1)
+![Screenshot (404)](https://github.com/OM-TRIPATHI1513/Brain_Tumor_Detection/assets/90430815/2b9666e3-6e67-4399-abf7-9dd53f497740)
 
 # Abstract
 A Brain tumor is considered as one of the aggressive diseases, among children and adults. Brain tumors account for 85 to 90 percent of all primary Central Nervous System(CNS) tumors. Every year, around 11,700 people are diagnosed with a brain tumor. The 5-year survival rate for people with a cancerous brain or CNS tumor is approximately 34 percent for men and36 percent for women. Brain Tumors are classified as: Benign Tumor, Malignant Tumor, Pituitary Tumor, etc. Proper treatment, planning, and accurate diagnostics should be implemented to improve the life expectancy of the patients. The best technique to detect brain tumors is Magnetic Resonance Imaging (MRI). A huge amount of image data is generated through the scans. These images are examined by the radiologist. A manual examination can be error-prone due to the level of complexities involved in brain tumors and their properties.
