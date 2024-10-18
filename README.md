@@ -1,5 +1,4 @@
 # Brain_Tumor_Detection
-btech final year project
 
 This Python script is used for binary classification of brain MRI images to detect tumors. It builds a CNN model with convolutional layers to extract features from images and uses dense layers to classify them into "No Tumor" or "Tumor" categories. The model is trained, evaluated, and tested on both the dataset and a specific image. Results like accuracy, confusion matrix, and classification report are generated to assess the performance.
 
