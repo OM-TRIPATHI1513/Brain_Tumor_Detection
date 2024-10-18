@@ -17,3 +17,29 @@ This Python script is used for binary classification of brain MRI images to dete
 ![20-accuracy](https://github.com/OM-TRIPATHI1513/Brain_Tumor_Detection/assets/90430815/3be97279-62a9-418d-bad8-ab967d53c9a3)
 
 ![20-loss](https://github.com/OM-TRIPATHI1513/Brain_Tumor_Detection/assets/90430815/46234f25-811c-497d-99d4-8c08fb1aa4a5)
+
+# 1. Imports:
+Libraries like cv2, PIL, tensorflow, numpy, pandas, etc., are imported for image processing, neural network operations, and result visualization.
+# 2. train_model() function:
+Image loading: It loads and preprocesses MRI images stored in the "datasets/no/" and "datasets/yes/" directories.
+Data preprocessing: Images are resized to 64x64 pixels, converted to arrays, and normalized. Labels (0 for no tumor, 1 for tumor) are created accordingly.
+Train-test split: The dataset is split into training (80%) and testing (20%) sets.
+Model architecture: A sequential CNN model is created with:
+# 3 convolutional layers (Conv2D) with ReLU activation and MaxPooling layers.
+A fully connected (Dense) layer followed by a dropout layer (to reduce overfitting).
+A final Dense layer with a softmax activation function for binary classification.
+Training: The model is trained for 10 epochs using categorical cross-entropy as the loss function and the Adam optimizer. The training and validation accuracy are stored.
+Saving the model: The trained model and the training/testing data are saved.
+# 3. test_model() function:
+Image prediction: This function loads a new MRI image for prediction, preprocesses it (resize and normalize), and makes a prediction using the trained model.
+Thresholding: The model outputs probabilities, and if the tumor probability exceeds 50%, it classifies the image as having a tumor.
+Evaluation: It prints the test accuracy and loss for the model on the test dataset.
+# 4. plot_confusion_matrix() function:
+This function generates a confusion matrix for the test results and visualizes it using Seaborn's heatmap for a better understanding of model performance.
+# 5. Main Execution Block:
+Training: The model is trained using the train_model() function.
+Accuracy Table: The training and validation accuracy for each epoch is printed in a tabular format.
+Model evaluation: Test accuracy and loss are evaluated.
+Model summary: Prints the architecture of the model.
+Prediction on new image: The model is tested on a new image (pred/pred2.jpg) and the prediction is printed.
+Confusion matrix & classification report: The confusion matrix and classification report (precision, recall, F1-score) for the test set are displayed.
