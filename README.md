@@ -18,28 +18,191 @@ This Python script is used for binary classification of brain MRI images to dete
 
 ![20-loss](https://github.com/OM-TRIPATHI1513/Brain_Tumor_Detection/assets/90430815/46234f25-811c-497d-99d4-8c08fb1aa4a5)
 
-# 1. Imports:
-Libraries like cv2, PIL, tensorflow, numpy, pandas, etc., are imported for image processing, neural network operations, and result visualization.
-# 2. train_model() function:
-Image loading: It loads and preprocesses MRI images stored in the "datasets/no/" and "datasets/yes/" directories.
-Data preprocessing: Images are resized to 64x64 pixels, converted to arrays, and normalized. Labels (0 for no tumor, 1 for tumor) are created accordingly.
-Train-test split: The dataset is split into training (80%) and testing (20%) sets.
-Model architecture: A sequential CNN model is created with:
-# 3 convolutional layers (Conv2D) with ReLU activation and MaxPooling layers.
-A fully connected (Dense) layer followed by a dropout layer (to reduce overfitting).
-A final Dense layer with a softmax activation function for binary classification.
-Training: The model is trained for 10 epochs using categorical cross-entropy as the loss function and the Adam optimizer. The training and validation accuracy are stored.
-Saving the model: The trained model and the training/testing data are saved.
-# 3. test_model() function:
-Image prediction: This function loads a new MRI image for prediction, preprocesses it (resize and normalize), and makes a prediction using the trained model.
-Thresholding: The model outputs probabilities, and if the tumor probability exceeds 50%, it classifies the image as having a tumor.
-Evaluation: It prints the test accuracy and loss for the model on the test dataset.
-# 4. plot_confusion_matrix() function:
-This function generates a confusion matrix for the test results and visualizes it using Seaborn's heatmap for a better understanding of model performance.
-# 5. Main Execution Block:
-Training: The model is trained using the train_model() function.
-Accuracy Table: The training and validation accuracy for each epoch is printed in a tabular format.
-Model evaluation: Test accuracy and loss are evaluated.
-Model summary: Prints the architecture of the model.
-Prediction on new image: The model is tested on a new image (pred/pred2.jpg) and the prediction is printed.
-Confusion matrix & classification report: The confusion matrix and classification report (precision, recall, F1-score) for the test set are displayed.
+
+# Brain Tumor Detection Using CNN
+
+This project utilizes a Convolutional Neural Network (CNN) model to classify brain MRI images into two categories: **No Tumor** and **Tumor**. The dataset comprises MRI images of brain scans, and the CNN model is trained to identify the presence of a tumor.
+
+## Table of Contents
+- [Project Overview](#project-overview)
+- [Directory Structure](#directory-structure)
+- [Dependencies](#dependencies)
+- [Code Breakdown](#code-breakdown)
+- [Usage](#usage)
+- [Training the Model](#training-the-model)
+- [Testing the Model](#testing-the-model)
+- [Results and Evaluation](#results-and-evaluation)
+- [Confusion Matrix & Classification Report](#confusion-matrix--classification-report)
+
+## Project Overview
+
+The goal of this project is to create a model that can classify MRI brain scan images into two categories:
+- **No Tumor**
+- **Tumor**
+
+We achieve this using a CNN built with Keras and TensorFlow. The project involves image preprocessing, model training, evaluation, and testing on a new MRI image.
+
+## Directory Structure
+
+```plaintext
+.
+├── datasets/
+│   ├── no/          # Directory containing MRI images with no tumor
+│   └── yes/         # Directory containing MRI images with tumors
+├── pred/
+│   └── pred2.jpg    # Sample image for testing the model's prediction
+├── my_model.keras   # Saved model after training
+├── x_train.pkl      # Pickle file for training data (features)
+├── y_train.pkl      # Pickle file for training labels
+├── x_test.pkl       # Pickle file for testing data (features)
+├── y_test.pkl       # Pickle file for testing labels
+└── README.md        # Project documentation
+```
+
+## Dependencies
+
+To run this project, ensure the following Python libraries are installed:
+
+- TensorFlow
+- Keras
+- OpenCV
+- PIL (Python Imaging Library)
+- NumPy
+- Matplotlib
+- Seaborn
+- Pandas
+- Scikit-learn
+
+Install the dependencies using the following command:
+```bash
+pip install tensorflow keras opencv-python pillow numpy matplotlib seaborn pandas scikit-learn
+```
+
+## Code Breakdown
+
+### 1. **Imports:**
+   The following libraries are used:
+   - **cv2** and **PIL** for image processing.
+   - **tensorflow** and **keras** for creating and training the CNN model.
+   - **numpy** and **pandas** for data manipulation.
+   - **seaborn** and **matplotlib** for visualizing the results.
+
+### 2. **`train_model()` function:**
+
+   - **Image Loading**: 
+     Loads and preprocesses MRI images from the directories `datasets/no/` (no tumor) and `datasets/yes/` (tumor).
+
+   - **Data Preprocessing**:
+     - Images are resized to 64x64 pixels, converted to arrays, and normalized.
+     - Labels are assigned (`0` for "No Tumor" and `1` for "Tumor").
+   
+   - **Train-Test Split**:
+     The dataset is split into 80% for training and 20% for testing.
+
+   - **Model Architecture**:
+     A CNN model with the following layers:
+     - **3 Convolutional layers**: Each with ReLU activation and MaxPooling for down-sampling.
+     - **1 Fully Connected (Dense) layer**: Followed by a Dropout layer to reduce overfitting.
+     - **Final Dense layer**: A softmax activation function for binary classification.
+
+   - **Training**:
+     The model is trained for 10 epochs using categorical cross-entropy as the loss function and Adam optimizer. Both training and validation accuracy are stored.
+
+   - **Model Saving**:
+     The trained model and the training/testing datasets are saved for later use.
+
+### 3. **`test_model()` function:**
+
+   - **Image Prediction**:
+     This function loads a new MRI image from the `pred/` folder, preprocesses it (resize and normalize), and makes a prediction using the trained model.
+
+   - **Thresholding**:
+     The model outputs a probability of tumor presence. If the tumor probability exceeds 50%, the image is classified as "Tumor"; otherwise, "No Tumor".
+
+   - **Evaluation**:
+     Prints the model's test accuracy and loss on the test dataset.
+
+### 4. **`plot_confusion_matrix()` function:**
+
+   - **Confusion Matrix**:
+     Generates and displays a confusion matrix using Seaborn’s heatmap. The confusion matrix helps visualize the model's performance by showing the number of correct and incorrect predictions for each class.
+
+### 5. **Main Execution Block:**
+
+   - **Training**:
+     Calls the `train_model()` function to train the model.
+   
+   - **Accuracy Table**:
+     Displays the training and validation accuracy for each epoch in a tabular format.
+
+   - **Model Evaluation**:
+     Test accuracy and loss are calculated after training.
+
+   - **Model Summary**:
+     Prints the architecture of the trained CNN model.
+
+   - **Prediction on New Image**:
+     The model is tested on a new image from the `pred/pred2.jpg` file, and the prediction (tumor or no tumor) is printed.
+
+   - **Confusion Matrix & Classification Report**:
+     After testing, a confusion matrix and classification report (precision, recall, F1-score) for the test set are displayed.
+
+## Usage
+
+### 1. Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/brain-tumor-detection.git
+cd brain-tumor-detection
+```
+
+### 2. Place your MRI images in the `datasets/` folder under `no/` and `yes/` directories.
+
+### 3. Run the Python script to train and test the model:
+
+```bash
+python script_name.py
+```
+
+## Training the Model
+
+To train the CNN model, execute the following command:
+
+```bash
+python script_name.py
+```
+
+The model will load and preprocess images, split the data into training and testing sets, train the CNN model, and save the trained model.
+
+## Testing the Model
+
+After training, the model can be tested on new MRI images:
+1. Place the new image in the `pred/` folder.
+2. Run the script to get the prediction (tumor or no tumor).
+
+Example output:
+```bash
+The probability of tumor presence is: 85.67%
+Tumor presence: Yes
+
+Test accuracy: 0.9234
+Test loss: 0.2178
+```
+
+## Results and Evaluation
+
+- **Training Accuracy**: The accuracy of the model on the training set after each epoch.
+- **Validation Accuracy**: The accuracy of the model on the validation set after each epoch.
+- **Test Accuracy & Loss**: The model's final accuracy and loss on the test dataset.
+
+### Confusion Matrix & Classification Report
+
+The confusion matrix and classification report are displayed to assess the model's performance. They show the number of true/false positives and negatives, as well as precision, recall, and F1-scores for both classes ("No Tumor" and "Tumor").
+
+## Contributing
+
+If you'd like to contribute, feel free to fork the repository and submit a pull request. For any issues, please open an issue on GitHub.
+
+## License
+
+This project is licensed under the MIT License.
